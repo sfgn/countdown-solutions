@@ -49,16 +49,16 @@ stdin.addListener("data", function(d) {
     wordList[dictionary[w].toLowerCase()] = dictionary[w];
   }
 
-  for (w in words) {
-    let word = '';
+  words.map(word => {
+    let currentWord = '';
 
-    for(i = 0; i < words[w].length; i++) {
-      word += words[w][i];
-      if (word.length >= 4 && typeof wordList[word] !== 'undefined') {
-        output[word] = word;
+    word.split('').map(char => {
+      currentWord += char;
+      if (currentWord.length > 2 && typeof wordList[currentWord] !== 'undefined') {
+        output[currentWord] = currentWord;
       }
-    }
-  }
+    });
+  });
 
   let realWords = Object.keys(output).map(val => {
     return val;
